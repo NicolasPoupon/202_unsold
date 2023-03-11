@@ -1,0 +1,37 @@
+#!/usr/bin/python3
+
+import sys
+from classes import Unsold
+
+def errors() -> int:
+        if len(sys.argv) != 3:
+            return 84
+        try:
+            a = int(sys.argv[1])
+            b = int(sys.argv[2])
+        except ValueError:
+            return 84
+        if a <= 50 or b <= 50:
+            return 84
+        return 0
+
+def hflag() -> None:
+        print("USAGE")
+        print("\t./202unsold a b\n")
+        print("DESCRIPTION")
+        print("\ta\tconstant computed from past results")
+        print("\tb\tconstant computed from past results")
+
+def main():
+    if len(sys.argv) == 2 and (sys.argv[1] == "-h" or sys.argv[1] == "--help"):
+        hflag()
+        exit(0)
+    if errors() == 84:
+        print("USAGE: ./202unsold a b")
+        exit(84)
+    
+    unsold202 = Unsold(int(sys.argv[1]), int(sys.argv[2]))
+    unsold202.calculate()
+    
+if __name__ == '__main__':
+    main()
